@@ -1,19 +1,27 @@
-import datetime
+import time as t
+import math as m
 
-print(datetime.datetime.now().hour)
+def den_to_bin(den_num):
+    bin_num = []
+    while den_num != 0: 
+        bin_num.insert(0, den_num % 2)
+        den_num = den_num // 2
+    while len(bin_num) != 6: 
+        bin_num.insert(0, 0)
+    return bin_num
 
-print(datetime.datetime.now().minute)
+while True:
+    t.sleep(1)
+        
+    current_time = str(t.strftime("%H%M%S", t.localtime()))
+    current_hour = int(current_time[0] + current_time[1])
+    current_min = int(current_time[2] + current_time[3])
+    current_sec = int(current_time[4] + current_time[5])
 
-print(datetime.datetime.now().second)
-
-def convert(time_value):
-    print("The value given as time_value needs to be converted to binary")
-    print("once it is converted, it needs to be returned as a tuple of length 6")
-    return (0,0,0,0,0,0)
-
-hourInBinary = convert(datetime.datetime.now().hour)
-minutesInBinary = convert(datetime.datetime.now().hour)
-secondsInBinary = convert(datetime.datetime.now().minute)
+    hours = ''.join(map(str, den_to_bin(current_hour)))
+    mins = ''.join(map(str, den_to_bin(current_min)))
+    secs = ''.join(map(str, den_to_bin(current_sec)))
+    print(hours, mins, secs)
 
 
 
